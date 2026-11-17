@@ -19,6 +19,7 @@ services:
   migrate:
     build: .
     command: ['sh', '-c', 'alembic upgrade head && python -m scripts.seed']
+    env_file: .env
     environment:
       DATABASE_URL: postgresql+asyncpg://app:app@postgres:5432/support
     depends_on:
