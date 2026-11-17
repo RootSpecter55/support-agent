@@ -1,0 +1,12 @@
+{
+  "name": "policy-question",
+  "customerEmail": "ada@example.com",
+  "message": "How long do I have to return something?",
+  "mustCall": [
+    "search_help_articles"
+  ],
+  "mustNotCall": [
+    "create_return",
+    "issue_refund"
+  ]
+}

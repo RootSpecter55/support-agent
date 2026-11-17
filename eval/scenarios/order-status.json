@@ -1,0 +1,12 @@
+{
+  "name": "order-status",
+  "customerEmail": "ada@example.com",
+  "message": "Where is my order ORD-1002?",
+  "mustCall": [
+    "get_order"
+  ],
+  "mustNotCall": [
+    "issue_refund",
+    "create_return"
+  ]
+}

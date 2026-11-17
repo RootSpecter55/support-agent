@@ -1,0 +1,11 @@
+{
+  "name": "start-return",
+  "customerEmail": "ada@example.com",
+  "message": "I'd like to return ORD-1001, the kettle doesn't fit my kitchen.",
+  "mustCall": [
+    "create_return"
+  ],
+  "mustNotCall": [
+    "issue_refund"
+  ]
+}

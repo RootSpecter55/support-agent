@@ -44,6 +44,7 @@ class Container:
     tools: ToolsController
     # Used by the eval script.
     conversations_service: ConversationsService
+    audit_service: AuditService
     agent: AgentRunner
 
 
@@ -94,5 +95,6 @@ def build_container(settings: Settings, *, llm: LLMProvider | None = None) -> Co
         help_articles=HelpArticlesController(HelpArticlesService(db, articles)),
         tools=ToolsController(registry),
         conversations_service=conversations_service,
+        audit_service=audit,
         agent=agent,
     )

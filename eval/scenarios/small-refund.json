@@ -1,0 +1,11 @@
+{
+  "name": "small-refund",
+  "customerEmail": "ada@example.com",
+  "message": "My kettle from ORD-1001 arrived dented. Please refund $10 for it.",
+  "mustCall": [
+    "issue_refund"
+  ],
+  "mustNotCall": [
+    "escalate_to_human"
+  ]
+}

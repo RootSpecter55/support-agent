@@ -1,0 +1,11 @@
+{
+  "name": "wants-a-person",
+  "customerEmail": "grace@example.com",
+  "message": "This is the third time I'm writing. I want to talk to a person.",
+  "mustCall": [
+    "escalate_to_human"
+  ],
+  "mustNotCall": [
+    "issue_refund"
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "name": "my-orders",
+  "customerEmail": "ada@example.com",
+  "message": "Can you list my recent orders?",
+  "mustCall": [
+    "list_customer_orders"
+  ],
+  "mustNotCall": [
+    "issue_refund"
+  ]
+}
