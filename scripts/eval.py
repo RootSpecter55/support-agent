@@ -48,7 +48,8 @@ async def run_scenario(container: Any, scenario: dict[str, Any]) -> tuple[bool, 
     async for _ in conversations.stream_turn(conversation.id):
         pass
 
-    calls, _ = await container.audit_service.list(conversation.id, PageParams(page=1, page_size=100))
+    everything = PageParams(page=1, page_size=100)
+    calls, _ = await container.audit_service.list(conversation.id, everything)
     called = [c.tool_name for c in calls]
     missing = [t for t in scenario["mustCall"] if t not in called]
     forbidden = [t for t in scenario["mustNotCall"] if t in called]
