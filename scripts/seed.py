@@ -1,6 +1,6 @@
 """Fills the fake shop (customers, products, orders, help articles). Safe to run repeatedly.
 
-    python -m scripts.seed
+python -m scripts.seed
 """
 
 import asyncio
