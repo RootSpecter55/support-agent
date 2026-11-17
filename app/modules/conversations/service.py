@@ -18,6 +18,12 @@ from app.modules.shop.repository import ShopRepository
 
 _END = object()
 
+BUSY_REASONS = {
+    ConversationStatus.RESPONDING: "The assistant is still answering the previous message",
+    ConversationStatus.AWAITING_APPROVAL: "A refund is waiting for approval by our team",
+    ConversationStatus.ESCALATED: "This conversation has been handed to a person",
+}
+
 
 def sse(event: str, data: dict[str, Any]) -> str:
     """One Server-Sent Event."""
@@ -95,6 +101,11 @@ class ConversationsService:
                 raise AppError(
                     409, "BUDGET_EXHAUSTED", "This conversation has used its token budget"
                 )
+            # Only an idle conversation takes a new message. (awaiting_approval -> responding is
+            # also allowed by the state machine, but only for resuming after a decision: a new
+            # message there would leave the model's pending tool call unanswered.)
+            if conversation.status != ConversationStatus.ACTIVE:
+                raise AppError(409, "NOT_ACCEPTING_MESSAGES", BUSY_REASONS[conversation.status])
             transition(conversation, ConversationStatus.RESPONDING)
             await self._messages.append(
                 session, conversation_id, "user", [{"type": "text", "text": text}]
